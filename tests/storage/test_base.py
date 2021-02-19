@@ -52,7 +52,10 @@ class SQLBaseStoreTestCase(unittest.TestCase):
         config = default_config(name="test", parse=True)
         hs = TestHomeServer("test", config=config)
 
-        sqlite_config = {"name": "sqlite3"}
+        sqlite_config = {
+            "name": "sqlite3",
+            "args": {"database": ":memory:"},
+        }
         engine = create_engine(sqlite_config)
         fake_engine = Mock(wraps=engine)
         fake_engine.can_native_upsert = False
