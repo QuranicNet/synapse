@@ -72,7 +72,7 @@ class ExternalCache:
             return
         delete_counter.labels(cache_name).inc()
 
-        logger.debug("Deleting %s %s: %r", cache_name, key)
+        logger.debug("Deleting %s %s", cache_name, key)
 
         return await make_deferred_yieldable(
             self._redis_connection.delete(self._get_redis_key(cache_name, key),)
